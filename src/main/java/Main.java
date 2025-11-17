@@ -1,34 +1,56 @@
-/*
-Kod bazowy programu Commit4_0: 
-• Program dodaje do prostej bazy danych (pliku db.txt) dane odnośnie Studentów.
-• Studenci dodawani są w klasie Main.
-• Wszyscy studenci są wypisywani na końcu klasy Main.
-• Klasa Service obsługuje odczyt i zapis do pliku bazy danych.
-• Klasa Student reprezentuje pojedynczego studenta (Imię, Wiek).
-*/
-
 import java.io.IOException;
 import java.util.Scanner;
 
 class Main {
-  public static void main(String[] args) {
-    try {
-      var input = new Scanner(System.in);
-      System.out.println("Podaj imię: ");
-      String name = input.nextLine();
-      System.out.println("Podaj wiek: ");
-      int age = input.nextInt();
-      input.close();
-      Service s = new Service();
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Service s = new Service();
 
-      s.addStudent(new Student(name, age));
+        while (true) {
+            try {
+                System.out.println("\n MENU ");
+                System.out.println("1 - Lista studentów");
+                System.out.println("2 - Dodawnie studenta");
+                System.out.println("0 - Wyjście");
+                System.out.print("Wybierz opcję: ");
 
-      var students = s.getStudents();
-      for(Student current : students) {
-        System.out.println(current.ToString());
-      }
-    } catch (IOException e) {
+                int wybor = input.nextInt();
+                input.nextLine();
 
+                switch (wybor) {
+                    case 1:
+                    var students = s.getStudents();
+                    System.out.println("\n Lista studentów ");
+                    for (Student current : students) {
+                        System.out.println(current.ToString());
+                    }
+                    break;
+
+                    case 2:
+                    System.out.print("Podaj imię: ");
+                    String name = input.nextLine();
+
+                    System.out.print("Podaj wiek: ");
+                    int age = input.nextInt();
+                    input.nextLine();
+
+                    s.addStudent(new Student(name, age));
+                    System.out.println("Dodano studenta!\n");
+                    break;
+
+
+                    case 0:
+                        System.out.println("Zamykanie programu...");
+                        input.close();
+                        return;
+
+                    default:
+                        System.out.println("Niepoprawna opcja!");
+                }
+
+            } catch (IOException e) {
+                System.out.println("Błąd podczas operacji na pliku!");
+            }
+        }
     }
-  }
 }
