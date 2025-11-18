@@ -20,9 +20,10 @@ class Main {
                 switch (wybor) {
                     case 1:
                     var students = s.getStudents();
-                    System.out.println("\n Lista studentów ");
+                    System.out.println("\n- Lista studentów ---");
                     for (Student current : students) {
-                        System.out.println(current.ToString());
+                        System.out.println(current);
+
                     }
                     break;
 
@@ -30,11 +31,15 @@ class Main {
                     System.out.print("Podaj imię: ");
                     String name = input.nextLine();
 
+                    System.out.print("Podaj nazwisko: ");
+                    String surname = input.nextLine();
+                        
+
                     System.out.print("Podaj wiek: ");
                     int age = input.nextInt();
                     input.nextLine();
 
-                    s.addStudent(new Student(name, age));
+                    s.addStudent(new Student(name, surname, age));
                     System.out.println("Dodano studenta!\n");
                     break;
 
@@ -53,4 +58,9 @@ class Main {
             }
         }
     }
+
+	@Override
+	public String toString() {
+		return "Main []";
+	}
 }
