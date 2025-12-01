@@ -33,13 +33,17 @@ class Main {
 
                     System.out.print("Podaj nazwisko: ");
                     String surname = input.nextLine();
+                    System.out.println("Podaj date urodzenia w formacie RRRR-MM-DD");
+                    System.out.print("Podaj Date urodzenia: ");
+                    String date = input.nextLine();
+                    
                         
 
                     System.out.print("Podaj wiek: ");
                     int age = input.nextInt();
                     input.nextLine();
 
-                    s.addStudent(new Student(name, surname, age));
+                    s.addStudent(new Student(name, surname, date, age));
                     System.out.println("Dodano studenta!\n");
                     break;
 
@@ -64,3 +68,4 @@ class Main {
 		return "Main []";
 	}
 }
+
